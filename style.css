@@ -1,38 +1,32 @@
 /*
- * COPTICO stylesheet
- *
- * This file defines the visual appearance of the COPTICO website.
- * Colours and fonts have been chosen to create a modern and welcoming
- * aesthetic while subtly referencing traditional Coptic colours (deep
- * purples and golds). Adjust the variables below to fine‑tune the
- * colour palette for your church community.
+ * COPTICO Stylesheet (Responsive)
+ * Works perfectly on iOS, iPadOS, macOS, Windows, and Android.
  */
 
-/* CSS custom properties define the colour palette and typography. */
+/* Root Variables */
 :root {
-  /*
-   * Colour palette for a lighter Coptic theme:
-   * The primary hue is a soft lavender to evoke spirituality without being too dark.
-   * The accent hue is a light, warm gold reminiscent of illuminated manuscripts.
-   */
-  /* Dark primary colour inspired by the crimson tones often seen in Coptic vestments */
-  --primary-color: #7a1334;
-  /* Deep blue accent echoing the rich hues found in church iconography */
-  --accent-color: #123c7a;
-  /* Off‑white background reminiscent of aged parchment */
-  --bg-color: #f9f6f2;
-  /* Dark text for contrast */
+  --primary-color: #7a1334; /* dark red */
+  --accent-color: #123c7a;  /* deep blue */
+  --bg-color: #f9f6f2;      /* off-white background */
   --text-color: #2e2e2e;
-  /* Font families imported from Google Fonts in index.html. */
+
   --font-header: "Montserrat", sans-serif;
   --font-body: "Cairo", sans-serif;
 }
 
-/* Reset default margin/padding and set box‑sizing to make sizing predictable. */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Global Styles */
+html,
+body {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -40,9 +34,18 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   line-height: 1.6;
+
+  /* Flex layout for sticky footer */
+  display: flex;
+  flex-direction: column;
+
+  /* Safe area support for iOS */
+  padding-top: env(safe-area-inset-top, 0);
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
 }
 
-/* A reusable container class to limit width and centre content */
+/* Reusable container */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -50,93 +53,90 @@ body {
   padding: 1rem;
 }
 
-/* Header styling */
+/* Header */
 header {
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   color: #ffffff;
   padding: 2rem 0;
   text-align: center;
-  position: relative;
 }
 
-/* Logo displayed at the top of the header. Center it and set a reasonable size. */
 header .logo {
-  width: 80px;
+  width: clamp(60px, 8vw, 90px);
   height: auto;
   display: block;
   margin: 0 auto 1rem auto;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
-}
 
 header h1 {
   font-family: var(--font-header);
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
 header .tagline {
   font-family: var(--font-body);
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: 500;
   opacity: 0.9;
 }
 
 /* Intro section */
 .intro {
-  margin: 2rem 0;
+  margin: 3rem auto;
   text-align: center;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .intro h2 {
   font-family: var(--font-header);
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   margin-bottom: 0.5rem;
   color: var(--primary-color);
 }
 
 .intro p {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  line-height: 1.6;
   max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.5;
 }
 
-/* Projects grid using CSS grid layout. Auto‑fit ensures cards wrap neatly. */
+/* Projects grid */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
 
-/* Individual project card */
+/* Project Card */
 .project-card {
-  /* Turn the entire card into a clickable element */
   display: block;
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem;
   text-align: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   text-decoration: none;
   color: var(--primary-color);
   cursor: pointer;
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
   background-color: #f5f1ec;
 }
 
-/* Project icon: limit size and centre it */
 .project-card .project-icon {
-  width: 96px;
-  height: 96px;
+  width: clamp(70px, 10vw, 100px);
+  height: auto;
   object-fit: contain;
   margin: 0 auto 1rem auto;
   display: block;
@@ -144,53 +144,46 @@ header .tagline {
 
 .project-card h3 {
   font-family: var(--font-header);
-  font-size: 1.1rem;
-  margin-bottom: 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
   color: var(--primary-color);
 }
 
-/* Project link styles removed because each project card is now a clickable link */
-
-/* Footer styling */
+/* Footer */
 footer {
+  margin-top: auto;
   background: var(--primary-color);
   color: #ffffff;
   text-align: center;
-  padding: 1rem 0;
-  font-size: 0.9rem;
+  padding: 1.2rem 0 env(safe-area-inset-bottom, 0);
+  font-size: 0.95rem;
 }
 
-/* --- Layout: make footer stick to bottom and keep content centered --- */
-html, body {
-  height: 100%;
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .intro p {
+    padding: 0 1rem;
+  }
 }
 
-body {
-  min-height: 100vh;           /* full viewport height */
-  display: flex;
-  flex-direction: column;      /* header -> main -> footer */
-  background: var(--bg-color);
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .project-card {
+    padding: 1.2rem;
+  }
+  .project-card .project-icon {
+    width: 70px;
+  }
+  .intro {
+    margin: 2rem auto;
+  }
 }
 
-main {
-  flex: 1;                      /* pushes footer to the bottom */
-  display: flex;
-  flex-direction: column;
-}
-
-/* --- Container: ensure true horizontal centering --- */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;               /* centers the block */
-  padding: 0 1rem;
-}
-
-/* --- Intro: center the “Welcome” section nicely --- */
-.intro {
-  margin: 2.5rem auto;          /* space above/below, centered */
-  text-align: center;
-  max-width: 760px;             /* readable line length */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Reduced Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
