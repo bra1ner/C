@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="COPTICO – your hub for new digital projects from the Coptic Orthodox community."
+    />
+    <title>COPTICO – New Coptic Projects</title>
+    <!-- Preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Google Fonts: Montserrat for headings, Cairo for body text (supports Arabic script) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <!-- Coptic cross logo. Replace the file in the images folder if you have your own icon. -->
+        <img
+          src="images/coptic-cross.png"
+          alt="Coptic Orthodox Cross logo"
+          class="logo"
+        />
+        <h1>COPTICO</h1>
+        <p class="tagline">Your hub for modern Coptic digital projects</p>
+      </div>
+    </header>
+    <main>
+      <!-- Introduction section -->
+      <section class="intro container">
+        <h2>Welcome</h2>
+        <p>
+          Discover the latest websites and apps produced by Coptic Orthodox churches.
+          Each card below represents a project – click to learn more and access the
+          service.
+        </p>
+      </section>
+      <!-- Projects grid. Add more <div class="project-card"> blocks to list additional projects. -->
+      <section class="projects container">
+        <!-- Example project card; wrap the entire card in an anchor so the whole block is clickable. -->
+        <a href="#" class="project-card">
+          <img
+            src="images/sample-app-icon.png"
+            alt="Sample Project Icon"
+            class="project-icon"
+          />
+          <h3>Sample Project</h3>
+        </a>
+        <a href="#" class="project-card">
+          <img
+            src="images/sample-app-icon.png"
+            alt="Another Project Icon"
+            class="project-icon"
+          />
+          <h3>Another Project</h3>
+        </a>
+        <!-- Duplicate the above anchor and update the image, title, and link to add more projects -->
+      </section>
+    </main>
+    <footer>
+      <div class="container">
+        <p>© 2025 COPTICO. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
