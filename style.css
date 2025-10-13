@@ -106,7 +106,7 @@ header .tagline {
   max-width: 700px;
 }
 
-/* Projects grid */
+/* Projects grid (default for larger screens) */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -146,6 +146,7 @@ header .tagline {
   font-family: var(--font-header);
   font-size: clamp(1.1rem, 2.2vw, 1.3rem);
   color: var(--primary-color);
+  margin: 0;
 }
 
 /* Footer */
@@ -158,25 +159,63 @@ footer {
   font-size: 0.95rem;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .intro p {
-    padding: 0 1rem;
+/* ---------------------------------------
+   Responsive Adjustments
+---------------------------------------- */
+
+/* Medium down: slightly smaller cards to fit more columns earlier */
+@media (max-width: 900px) {
+  .projects {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .project-card {
+    padding: 1.25rem 0.8rem;
+  }
+  .project-card .project-icon {
+    width: clamp(60px, 9vw, 84px);
+  }
+  .project-card h3 {
+    font-size: clamp(1rem, 2vw, 1.15rem);
   }
 }
 
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 2rem;
+/* Phones & small devices: force 4 cards per row */
+@media (max-width: 640px) {
+  .projects {
+    grid-template-columns: repeat(4, 1fr);  /* <-- four per row */
+    gap: 8px;
   }
   .project-card {
-    padding: 1.2rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 10px;
   }
   .project-card .project-icon {
-    width: 70px;
+    width: 44px;          /* smaller icon */
+    margin-bottom: 0.45rem;
   }
-  .intro {
-    margin: 2rem auto;
+  .project-card h3 {
+    font-size: 0.85rem;   /* smaller title */
+    line-height: 1.2;
+    white-space: nowrap;  /* keep titles to one line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Tiny phones: tighten spacing a touch more (still 4 per row) */
+@media (max-width: 380px) {
+  .projects {
+    gap: 6px;
+  }
+  .project-card {
+    padding: 0.5rem 0.4rem;
+  }
+  .project-card .project-icon {
+    width: 40px;
+  }
+  .project-card h3 {
+    font-size: 0.8rem;
   }
 }
 
