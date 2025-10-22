@@ -228,38 +228,30 @@ footer {
 }
 
 /* ---------------------------------------
-   ✅ Safe-Area Background Fill for iOS/iPadOS
+   FINAL — iOS / Safari Safe-Area Fill Fix
 ---------------------------------------- */
+
+/* 1️⃣ Make sure html covers full display */
 html {
-  background-color: var(--primary-color); /* fallback color under everything */
+  height: 100%;
+  background:
+    linear-gradient(135deg, var(--primary-color), var(--accent-color)) 0 0 / 100% env(safe-area-inset-top, 0) no-repeat,
+    var(--bg-color) 0 env(safe-area-inset-top, 0) / 100% calc(100% - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0)) no-repeat,
+    var(--primary-color) 0 100% / 100% env(safe-area-inset-bottom, 0) no-repeat;
+  background-attachment: fixed;
 }
 
-/* Top & Bottom edge fills for devices with notches or home indicators */
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  z-index: 9999; /* must be above html background but below content */
+/* 2️⃣ Body fills available space */
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent; /* allow html background to show through */
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Top gradient fill */
-body::before {
-  top: 0;
-  height: env(safe-area-inset-top, 0);
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-}
-
-/* Bottom red fill */
-body::after {
-  bottom: 0;
-  height: env(safe-area-inset-bottom, 0);
-  background-color: var(--primary-color);
-}
-
-/* Ensure header and footer colors match edges perfectly */
+/* 3️⃣ Match header/footer to edges */
 header {
   padding-top: calc(2rem + env(safe-area-inset-top, 0));
 }
