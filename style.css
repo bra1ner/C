@@ -228,28 +228,42 @@ footer {
 }
 
 /* ---------------------------------------
-   Safe-Area Fill for iOS Devices
+   ✅ Safe-Area Background Fill for iOS/iPadOS
 ---------------------------------------- */
+html {
+  background-color: var(--primary-color); /* fallback color under everything */
+}
+
+/* Top & Bottom edge fills for devices with notches or home indicators */
 body::before,
 body::after {
   content: "";
   position: fixed;
   left: 0;
   right: 0;
-  z-index: -1;
+  pointer-events: none;
+  z-index: 9999; /* must be above html background but below content */
 }
 
-/* Top safe-area fill (matches header gradient) */
+/* Top gradient fill */
 body::before {
   top: 0;
   height: env(safe-area-inset-top, 0);
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
 }
 
-/* Bottom safe-area fill (matches footer red) */
+/* Bottom red fill */
 body::after {
   bottom: 0;
   height: env(safe-area-inset-bottom, 0);
   background-color: var(--primary-color);
 }
 
+/* Ensure header and footer colors match edges perfectly */
+header {
+  padding-top: calc(2rem + env(safe-area-inset-top, 0));
+}
+
+footer {
+  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0));
+}
