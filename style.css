@@ -228,41 +228,42 @@ footer {
 }
 
 /* ---------------------------------------
-   ✅ SAFARI SAFE AREA FIX (Black top & bottom edges)
+   ✅ SAFARI SAFE AREA FIX — Black edges visible
 ---------------------------------------- */
 
-/* Make sure html and body fill the screen */
-html,
-body {
+/* Make sure html/body occupy full viewport */
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* 1️⃣ html: black fill for top notch and bottom home bar areas */
+/* html draws black bars behind the notch & home bar */
 html {
   background:
     #000 0 0 / 100% env(safe-area-inset-top, 0) no-repeat,
     #000 0 100% / 100% env(safe-area-inset-bottom, 0) no-repeat;
+  background-color: var(--bg-color);
   background-attachment: fixed;
-  background-color: var(--bg-color); /* visible behind main body */
+  position: relative;
+  z-index: 0;
 }
 
-/* 2️⃣ body: off-white background for main content */
+/* Body is elevated so the black shows behind */
 body {
+  position: relative;
+  z-index: 1;
   font-family: var(--font-body);
   background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   color: var(--text-color);
-
-  /* Respect iOS safe areas */
   padding-top: env(safe-area-inset-top, 0);
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* 3️⃣ Header with gradient */
+/* Header stays gradient and respects top safe area */
 header {
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   color: #fff;
@@ -270,10 +271,33 @@ header {
   padding: calc(2rem + env(safe-area-inset-top, 0)) 0 2rem 0;
 }
 
-/* 4️⃣ Footer with dark red background (above black safe-area zone) */
+/* Footer sits above bottom black bar */
 footer {
   background: var(--primary-color);
   color: #fff;
   text-align: center;
   padding: 1.2rem 0 calc(env(safe-area-inset-bottom, 0) + 0.2rem);
+  position: relative;
+  z-index: 2;
+}
+
+/* Force Safari to render safe-area black even in full-screen view */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: #000;
+  z-index: -1;
+}
+
+body::before {
+  top: 0;
+  height: env(safe-area-inset-top, 0);
+}
+
+body::after {
+  bottom: 0;
+  height: env(safe-area-inset-bottom, 0);
 }
