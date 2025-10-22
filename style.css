@@ -228,34 +228,44 @@ footer {
 }
 
 /* ---------------------------------------
-   FINAL — iOS / Safari Safe-Area Fill Fix
+   FINAL FIX — iOS Safari Safe-Area Top/Bottom Fill
 ---------------------------------------- */
 
-/* 1️⃣ Make sure html covers full display */
-html {
+html, body {
   height: 100%;
-  background:
-    linear-gradient(135deg, var(--primary-color), var(--accent-color)) 0 0 / 100% env(safe-area-inset-top, 0) no-repeat,
-    var(--bg-color) 0 env(safe-area-inset-top, 0) / 100% calc(100% - env(safe-area-inset-top, 0) - env(safe-area-inset-bottom, 0)) no-repeat,
-    var(--primary-color) 0 100% / 100% env(safe-area-inset-bottom, 0) no-repeat;
-  background-attachment: fixed;
+  margin: 0;
 }
 
-/* 2️⃣ Body fills available space */
+/* 1️⃣ Make sure the html background truly touches the viewport edges */
+html {
+  background-color: var(--primary-color); /* fallback color */
+  background-image:
+    linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background-repeat: no-repeat;
+  background-size: 100% calc(env(safe-area-inset-top, 0) + 1px);
+  background-position: top center;
+}
+
+/* 2️⃣ Body uses normal background for content area */
 body {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: transparent; /* allow html background to show through */
-  padding-top: env(safe-area-inset-top, 0);
-  padding-bottom: env(safe-area-inset-bottom, 0);
+  min-height: 100%;
+  background-color: var(--bg-color);
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* 3️⃣ Match header/footer to edges */
+/* 3️⃣ Extend header/footer colors seamlessly */
 header {
-  padding-top: calc(2rem + env(safe-area-inset-top, 0));
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: #fff;
+  padding-top: calc(2rem + env(safe-area-inset-top));
 }
 
 footer {
-  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0));
+  background: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom));
 }
