@@ -80,5 +80,13 @@
         <p>© 2025 COPTICO. All rights reserved.</p>
       </div>
     </footer>
+    <script>
+      window.addEventListener("resize", () => {
+        document.body.style.paddingTop = getComputedStyle(document.documentElement)
+          .getPropertyValue("env(safe-area-inset-top)");
+        document.body.style.paddingBottom = getComputedStyle(document.documentElement)
+          .getPropertyValue("env(safe-area-inset-bottom)");
+     });
+    </script>
   </body>
 </html>
