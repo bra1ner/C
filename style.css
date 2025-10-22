@@ -226,3 +226,30 @@ footer {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ---------------------------------------
+   Safe-Area Fill for iOS Devices
+---------------------------------------- */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+/* Top safe-area fill (matches header gradient) */
+body::before {
+  top: 0;
+  height: env(safe-area-inset-top, 0);
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+/* Bottom safe-area fill (matches footer red) */
+body::after {
+  bottom: 0;
+  height: env(safe-area-inset-bottom, 0);
+  background-color: var(--primary-color);
+}
+
