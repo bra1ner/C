@@ -228,43 +228,50 @@ footer {
 }
 
 /* ---------------------------------------
-   ✅ SAFARI FULL EDGE FIX (WORKS FOR NOTCH + HOME INDICATOR)
+   ✅ SAFARI SAFE AREA FIX (Gradient only on header + safe zones)
 ---------------------------------------- */
 
-/* Make sure html and body fill full screen */
+/* Make sure html and body fill the screen */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* Allow background to extend behind Safari UI (requires viewport-fit=cover) */
+/* 1️⃣ html: only background for the notch + footer safe areas */
 html {
-  background-color: var(--primary-color);
-  background-image: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background:
+    linear-gradient(135deg, var(--primary-color), var(--accent-color)) 0 0 / 100% env(safe-area-inset-top, 0) no-repeat,
+    var(--primary-color) 0 100% / 100% env(safe-area-inset-bottom, 0) no-repeat;
   background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: cover;
+  background-color: var(--bg-color); /* visible behind body */
 }
 
-/* Body should not override html background */
+/* 2️⃣ body: off-white background for main content */
 body {
-  background-color: transparent;
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  color: var(--text-color);
 
-  /* Respect the safe areas explicitly */
+  /* Respect iOS safe areas */
   padding-top: env(safe-area-inset-top, 0);
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* Header/Footer extend naturally */
+/* 3️⃣ Header/footer padding adjustments */
 header {
-  padding-top: calc(2rem + env(safe-area-inset-top, 0));
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: #fff;
+  text-align: center;
+  padding: calc(2rem + env(safe-area-inset-top, 0)) 0 2rem 0;
 }
 
 footer {
-  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0));
+  background: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: 1.2rem 0 calc(env(safe-area-inset-bottom, 0) + 0.2rem);
 }
