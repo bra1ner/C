@@ -228,23 +228,24 @@ footer {
 }
 
 /* ---------------------------------------
-   ✅ SAFARI SAFE AREA FIX (Gradient only on header + safe zones)
+   ✅ SAFARI SAFE AREA FIX (Black top & bottom edges)
 ---------------------------------------- */
 
 /* Make sure html and body fill the screen */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* 1️⃣ html: only background for the notch + footer safe areas */
+/* 1️⃣ html: black fill for top notch and bottom home bar areas */
 html {
   background:
-    linear-gradient(135deg, var(--primary-color), var(--accent-color)) 0 0 / 100% env(safe-area-inset-top, 0) no-repeat,
-    var(--primary-color) 0 100% / 100% env(safe-area-inset-bottom, 0) no-repeat;
+    #000 0 0 / 100% env(safe-area-inset-top, 0) no-repeat,
+    #000 0 100% / 100% env(safe-area-inset-bottom, 0) no-repeat;
   background-attachment: fixed;
-  background-color: var(--bg-color); /* visible behind body */
+  background-color: var(--bg-color); /* visible behind main body */
 }
 
 /* 2️⃣ body: off-white background for main content */
@@ -261,7 +262,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom, 0);
 }
 
-/* 3️⃣ Header/footer padding adjustments */
+/* 3️⃣ Header with gradient */
 header {
   background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   color: #fff;
@@ -269,6 +270,7 @@ header {
   padding: calc(2rem + env(safe-area-inset-top, 0)) 0 2rem 0;
 }
 
+/* 4️⃣ Footer with dark red background (above black safe-area zone) */
 footer {
   background: var(--primary-color);
   color: #fff;
