@@ -149,46 +149,48 @@ header .tagline {
   margin: 0;
 }
 
-/* Unified icon wrapper */
+/* Icon wrapper (same visual size as project-icon) */
 .icon-wrap {
   width: clamp(70px, 10vw, 100px);
-  aspect-ratio: 1 / 1;
+  height: clamp(70px, 10vw, 100px);
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 1rem auto;
-  background: #eee;
 }
 
-/* Coptic Verse specific background */
+/* Coptic Verse background */
 .icon-wrap.verse {
   background-color: #7f1e12;
 }
 
-/* Icon image inside wrapper */
+/* Image inside wrapper */
 .icon-wrap img {
-  width: 65%;
-  height: 65%;
+  width: 68%;
+  height: 68%;
   object-fit: contain;
+  display: block;
 }
 
 @media (max-width: 640px) {
   .icon-wrap {
     width: 44px;
+    height: 44px;
     border-radius: 10px;
     margin-bottom: 0.45rem;
   }
 
   .icon-wrap img {
-    width: 70%;
-    height: 70%;
+    width: 72%;
+    height: 72%;
   }
 }
 
 @media (max-width: 380px) {
   .icon-wrap {
     width: 40px;
+    height: 40px;
   }
 }
 
